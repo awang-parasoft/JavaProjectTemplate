@@ -1,3 +1,16 @@
+properties([
+  parameters([
+    string(
+      name: 'REF_BUILD_JOB',
+      defaultValue: ''
+    ),
+    string(
+      name: 'REF_BUILD_NUMBER',
+      defaultValue: ''
+    )
+  ])
+])
+
 pipeline {
     //agent { label 'built-in' }
     //agent { label 'remote' }
@@ -18,7 +31,8 @@ pipeline {
         always {
             recordParasoftCoverage coverageQualityGates: [[criticality: 'UNSTABLE', threshold: 80.0, type: 'PROJECT'],
                 [criticality: 'UNSTABLE', threshold: 10.0, type: 'MODIFIED_LINES']],
-                pattern: 'build/report/jtest/junit/coverage.xml'
+                pattern: 'build/report/jtest/junit/coverage.xml',
+                referenceBuild: '${params.REF_BUILD_NUMBER}', referenceJob: '${params.REF_BUILD_JOB}'
         }
     }
 }
