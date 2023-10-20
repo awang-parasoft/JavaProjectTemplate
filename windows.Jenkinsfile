@@ -32,7 +32,7 @@ pipeline {
             recordParasoftCoverage coverageQualityGates: [[criticality: 'UNSTABLE', threshold: 80.0, type: 'PROJECT'],
                 [criticality: 'UNSTABLE', threshold: 10.0, type: 'MODIFIED_LINES']],
                 pattern: 'build/report/jtest/junit/coverage.xml',
-                referenceBuild: '${REF_BUILD_NUMBER}', referenceJob: '${REF_BUILD_JOB}'
+                referenceBuild: "${REF_BUILD_NUMBER}", referenceJob: "${REF_BUILD_JOB}"
         }
     }
 }
