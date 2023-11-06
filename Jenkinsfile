@@ -21,6 +21,14 @@ pipeline {
     //agent { label 'remote' }
     agent any
 
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+
     post {
         always {
             recordParasoftCoverage coverageQualityGates: [[criticality: 'UNSTABLE', threshold: 80.0, type: 'PROJECT'],
