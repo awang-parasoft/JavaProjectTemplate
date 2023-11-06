@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 final DEFAULT_REF_BUILD_JOB = "${env.JOB_NAME}"
-final DEFAULT_REF_BUILD_NUMBER = Integer.parseInt("${env.BUILD_NUMBER}") - 1
+final DEFAULT_REF_BUILD_NUMBER = String.valueOf(Integer.parseInt("${env.BUILD_NUMBER}") - 1)
 
 properties([
   parameters([
